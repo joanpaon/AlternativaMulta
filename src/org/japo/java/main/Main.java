@@ -20,6 +20,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    // Instancia el objeto Scanner
+    public static final Scanner SCN
+            = new Scanner(System.in, "Windows-1252")
+                    .useLocale(Locale.ENGLISH).useDelimiter("\\s+");
+
     public static void main(String[] args) {
         // Referencias
         final double IMPORTE_MULTA = 60.0;
@@ -32,15 +37,15 @@ public class Main {
         int diasDemora;
         boolean testOK;
 
-        // Instancia el objeto Scanner
-        Scanner scn = new Scanner(System.in, "ISO-8859-1");
-
         try {
+            // Cabecera
+            System.out.println("Alternativa Multa");
+            System.out.println("=================");
+
             // Introducir los dias de demora
-            System.out.print("Dias de demora ...........: ");
-            diasDemora = scn.nextInt();
-            scn.nextLine();
-            
+            System.out.print("Días de demora ...........: ");
+            diasDemora = SCN.nextInt();
+
             // Separador
             System.out.println("---");
 
@@ -56,14 +61,18 @@ public class Main {
             importeFinal = IMPORTE_MULTA - importeDecto;
 
             // Muestra el importe de la multa
-            System.out.printf(Locale.ENGLISH, "Importe inicial multa ....: %.2f €\n", IMPORTE_MULTA);
-            System.out.printf("Plazo con descuento ......: %d dias\n", DIAS_DESCUENTO);
-            System.out.printf("Tipo descuento ...........: %d %%\n", TIPO_DESCUENTO);
-            System.out.printf(Locale.ENGLISH, "Importe descuento ........: %.2f €\n", importeDecto);
-            System.out.printf(Locale.ENGLISH, "Importe final multa ......: %.2f €\n", importeFinal);
+            System.out.printf(Locale.ENGLISH, "Importe inicial multa ....: %.2f €%n", IMPORTE_MULTA);
+            System.out.println("---");
+            System.out.printf("Plazo con descuento ......: %d días%n", DIAS_DESCUENTO);
+            System.out.printf("Tanto descuento ..........: %d %%%n", TIPO_DESCUENTO);
+            System.out.printf(Locale.ENGLISH, "Importe descuento ........: %.2f €%n", importeDecto);
+            System.out.println("---");
+            System.out.printf(Locale.ENGLISH, "Importe final multa ......: %.2f €%n", importeFinal);
         } catch (Exception e) {
             System.out.println("---");
-            System.out.println("Error de entrada");
+            System.out.println("ERROR: Entrada incorrecta");
+        } finally {
+            SCN.nextLine();
         }
     }
 }
